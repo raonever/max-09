@@ -9,7 +9,8 @@ import './Blog.css';
 class Blog extends Component {
     state = {
         posts: [],
-        selectedPostId: null
+        selectedPostId: null,
+        error: false
     }
 
     componentDidMount () {
@@ -21,26 +22,32 @@ class Blog extends Component {
                         ...post,
                         author: 'Max'
                     }
-                })
+                });
                 this.setState({posts: updatePosts});         // axios. get으로 읽어들이면서 setState로 posts에 데이터 저장
                 // console.log(response);
+            })
+            .catch(error => {
+                // console.log(error);
+                this.setState({error: true});  // 에러가 발생하면 error를 true로 변경해줌
             });
     }
 
     postSelectedHandler = (id) => {
         this.setState({selectedPostId: id});
-        console.log("id1" + this.state.selectedPostId);
     }
 
     render () {
-        const posts = this.state.posts.map(post => {
-            return <Post 
-                key={post.id} 
-                title={post.title} 
-                author={post.author}
-                clicked={() => this.postSelectedHandler(post.id)}
-                />;
-        })
+        let posts = <p style={{textAlign: 'center'}}>something went wrong!</p>
+        if (!this.state.error) {         // 에러가 발생하면 => componentDidMount에서 error를 true로 만들기 때문에, 여기에서는 false가 됨으로 구문 작동 x
+            posts = this.state.posts.map(post => {
+                return <Post 
+                    key={post.id} 
+                    title={post.title} 
+                    author={post.author}
+                    clicked={() => this.postSelectedHandler(post.id)}
+                    />;
+            });
+        }
 
         return (
             <div>
