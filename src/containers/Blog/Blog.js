@@ -9,7 +9,7 @@ import './Blog.css';
 class Blog extends Component {
     state = {
         posts: [],
-        seletedPostId: null
+        selectedPostId: null
     }
 
     componentDidMount () {
@@ -29,6 +29,7 @@ class Blog extends Component {
 
     postSelectedHandler = (id) => {
         this.setState({selectedPostId: id});
+        console.log("id1" + this.state.selectedPostId);
     }
 
     render () {
@@ -47,7 +48,7 @@ class Blog extends Component {
                     {posts}
                 </section>
                 <section>
-                    <FullPost id={this.state.seletedPostId} />
+                    <FullPost id={this.state.selectedPostId} />
                 </section>
                 <section>
                     <NewPost />
