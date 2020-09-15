@@ -11,7 +11,7 @@ class FullPost extends Component {
     componentDidUpdate() {       // 무한 루프 발생(setState를 호출하면 업데이트되고, componentDidUpdate가 다시 실행되는게 반복)
         if (this.props.id) {
             if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {  // 실수 : loadedPosts 
-                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+                axios.get('/posts/' + this.props.id)
                 .then(response => {
                     console.log(response);
                     this.setState({loadedPost: response.data});
@@ -21,7 +21,7 @@ class FullPost extends Component {
     }
 
     deletePostHandler = () => {
-        axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+        axios.delete('/posts/' + this.props.id)
         .then(response => {
             console.log(response);
         });
