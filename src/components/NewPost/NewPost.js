@@ -17,7 +17,7 @@ class NewPost extends Component {
             author: this.state.author
         }
         // axios 는 기본적으로 문자열화하므로, 이것을 json 데이터로 바꾸고, json 데이터를 추출하고 요청을 받는 일은 한다.
-        axios.post('h/posts', data)
+        axios.post('/posts', data)
             .then(response => {
                 console.log(response);
             });
