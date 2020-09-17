@@ -5,7 +5,6 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
     render () {
@@ -15,8 +14,8 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><NavLink 
-                                to="/"
-                                exact
+                                to="/posts/"
+                                exact    // 사용 안하면, "/","/:id" 둘다 활성화되어 있는 상태
                                 activeClassName="my-active"
                                 activeStyle={{
                                     color: '#fa923f',
@@ -34,10 +33,9 @@ class Blog extends Component {
                 </header>
                 {/* <Route path="/" exact render={() => <h1>Home</h1>} />   
                 <Route path="/" render={() => <h1>Home 2</h1>} />    */}
-                <Route path="/" exact component={Posts} />
                 <Switch>
-                    <Route path="/new-post"  component={NewPost} />
-                    <Route path="/:id" exact component={FullPost} />
+                    <Route path="/new-post"  component={NewPost} /> 
+                    <Route path="/posts" component={Posts} />
                 </Switch>
             </div>
         );
