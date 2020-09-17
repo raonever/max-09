@@ -22,7 +22,7 @@ class Blog extends Component {
                                     color: '#fa923f',
                                     textDecoration: 'underline'
                                 }}
-                                >Home</NavLink></li>
+                                >Posts</NavLink></li>
                             <li><NavLink to={{
                                 // pathname: this.props.match.url + '/new-post',   // 상대 경로
                                 pathname: '/new-post',
