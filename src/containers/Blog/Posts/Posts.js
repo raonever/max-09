@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../../axios';
+import { Link } from 'react-router-dom';
 
 import Post from '../../../components/Post/Post';
 import './Posts.css';
@@ -37,13 +38,14 @@ class Posts extends Component {
         let posts = <p style={{textAlign: 'center'}}>something went wrong!</p>
         if (!this.state.error) {         // 에러가 발생하면 => componentDidMount에서 error를 true로 만들기 때문에, 여기에서는 false가 됨으로 구문 작동 x
             posts = this.state.posts.map(post => {
-                return <Post 
-                    key={post.id} 
-                    title={post.title} 
-                    author={post.author}
-                    // match={this.props.match}
-                    clicked={() => this.postSelectedHandler(post.id)}
-                    />;
+                return (
+                    <Link to={'/' + post.id}  key={post.id}>
+                        <Post          
+                            title={post.title} 
+                            author={post.author}
+                            // match={this.props.match}
+                            clicked={() => this.postSelectedHandler(post.id)} />
+                    </Link>);
             });
         }
 

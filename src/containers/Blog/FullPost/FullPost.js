@@ -8,10 +8,11 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    componentDidUpdate() {       // 무한 루프 발생(setState를 호출하면 업데이트되고, componentDidUpdate가 다시 실행되는게 반복)
-        if (this.props.id) {
+    componentDidMount() {       // Update가 아니기 때문에 componentDidUpdate를 쓰지 않는다.
+        console.log(this.props);
+        if (this.props.match.params.id) {
             if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {  // 실수 : loadedPosts 
-                axios.get('/posts/' + this.props.id)
+                axios.get('/posts/' + this.props.match.params.id)
                 .then(response => {
                     console.log(response);
                     this.setState({loadedPost: response.data});
