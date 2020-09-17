@@ -39,6 +39,7 @@ class Posts extends Component {
         if (!this.state.error) {         // 에러가 발생하면 => componentDidMount에서 error를 true로 만들기 때문에, 여기에서는 false가 됨으로 구문 작동 x
             posts = this.state.posts.map(post => {
                 return (
+                    // <Link to={'/posts/' + post.id}  key={post.id}>
                     <Link to={'/' + post.id}  key={post.id}>
                         <Post          
                             title={post.title} 
