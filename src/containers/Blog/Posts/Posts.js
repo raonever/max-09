@@ -41,6 +41,7 @@ class Posts extends Component {
                     key={post.id} 
                     title={post.title} 
                     author={post.author}
+                    // match={this.props.match}
                     clicked={() => this.postSelectedHandler(post.id)}
                     />;
             });
